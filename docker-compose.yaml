@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - 8080:8080
+    volumes:
+      - ./config/:/opt/keycloak/data/import:ro
+    entrypoint: '/opt/keycloak/bin/kc.sh start-dev --import-realm'
+  
+  
